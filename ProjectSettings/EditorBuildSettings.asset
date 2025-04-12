@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SCN_Level01.unity
     guid: fd74523800fef7349a5cc7eba7ae0332
+  - enabled: 1
+    path: Assets/Scenes/SCN_SlimeRest.unity
+    guid: 529326183eb68384c9b01cde9abe8b31
   m_configObjects: {}
