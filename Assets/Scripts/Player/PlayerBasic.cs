@@ -34,13 +34,14 @@ public class PlayerBasic : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             _currentSpeed = speedRun;
+            animator.SetBool("isDashingRun", true);
         }
         else if (!Input.anyKey)
         {
             friction = new Vector2(1f, 0);
         }
         else
-        {
+        { 
             _currentSpeed = speed;
         }
 
@@ -60,6 +61,7 @@ public class PlayerBasic : MonoBehaviour
         else
         {
             animator.SetBool("isMove", false);
+            animator.SetBool("isDashingRun", false);
         }
 
 
@@ -85,6 +87,7 @@ public class PlayerBasic : MonoBehaviour
         if (rb.velocity.y != 0)
         {
             animator.SetBool("isJump", true);
+            animator.SetBool("isDashingRun", false);
             _isJumping = true;
         }
         else if (rb.velocity.y == 0f && _isJumping)
