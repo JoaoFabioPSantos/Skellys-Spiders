@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerBasic : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerBasic : MonoBehaviour
     public float speedRun;
     public Vector2 friction = new Vector2(.1f, 0);
     public float forceJump = 2f;
+    public float playerSwapduration = .1f;
 
     private float _currentSpeed;
     private bool _isJumping;
@@ -49,14 +51,23 @@ public class PlayerBasic : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             rb.velocity = new Vector2(_currentSpeed, rb.velocity.y);
-            sr.flipX = false;
             animator.SetBool("isMove", true);
+
+            if (rb.transform.localScale.x == -1)
+            {
+                rb.transform.DOScaleX(1, playerSwapduration);
+            }
+
         }
         else if(Input.GetKey(KeyCode.LeftArrow)) 
         {
             rb.velocity = new Vector2(-_currentSpeed, rb.velocity.y);
-            sr.flipX = true;
             animator.SetBool("isMove", true);
+
+            if (rb.transform.localScale.x == 1)
+            {
+                rb.transform.DOScaleX(-1, playerSwapduration);
+            }
         }
         else
         {
@@ -99,5 +110,9 @@ public class PlayerBasic : MonoBehaviour
         {
             animator.SetBool("isJump", false);
         }
+    }
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
     }
 }
