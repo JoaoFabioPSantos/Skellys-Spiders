@@ -10,11 +10,7 @@ public class PlayerBasic : MonoBehaviour
     public Animator animator;
 
     [Header("Move config")]
-    public float speed;
-    public float speedRun;
-    public Vector2 friction = new Vector2(.1f, 0);
-    public float forceJump = 2f;
-    public float playerSwapduration = .1f;
+    public SOPlayerBasicSetup SOPlayer;
 
     private float _currentSpeed;
     private bool _isJumping;
@@ -25,26 +21,20 @@ public class PlayerBasic : MonoBehaviour
         HandleMovement();
     }
 
-    private void FixedUpdate()
-    {
-
-
-    }
-
     private void HandleMovement()
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            _currentSpeed = speedRun;
+            _currentSpeed = SOPlayer.speedRun;
             animator.SetBool("isDashingRun", true);
         }
         else if (!Input.anyKey)
         {
-            friction = new Vector2(1f, 0);
+            SOPlayer.friction = new Vector2(1f, 0);
         }
         else
         { 
-            _currentSpeed = speed;
+            _currentSpeed = SOPlayer.speed;
         }
 
 
@@ -55,7 +45,7 @@ public class PlayerBasic : MonoBehaviour
 
             if (rb.transform.localScale.x == -1)
             {
-                rb.transform.DOScaleX(1, playerSwapduration);
+                rb.transform.DOScaleX(1, SOPlayer.playerSwapduration);
             }
 
         }
@@ -66,7 +56,7 @@ public class PlayerBasic : MonoBehaviour
 
             if (rb.transform.localScale.x == 1)
             {
-                rb.transform.DOScaleX(-1, playerSwapduration);
+                rb.transform.DOScaleX(-1, SOPlayer.playerSwapduration);
             }
         }
         else
@@ -78,11 +68,11 @@ public class PlayerBasic : MonoBehaviour
 
         if (rb.velocity.x < 0)
         {
-            rb.velocity += friction;
+            rb.velocity += SOPlayer.friction;
         }
         else if (rb.velocity.x > 0)
         {
-            rb.velocity -= friction;
+            rb.velocity -= SOPlayer.friction;
         }
 
         
@@ -92,7 +82,7 @@ public class PlayerBasic : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = Vector2.up * forceJump;
+            rb.velocity = Vector2.up * SOPlayer.forceJump;
         }
 
         if (rb.velocity.y != 0)
