@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.VFX;
 
 public class PlayerBasic : MonoBehaviour
 {
@@ -14,6 +15,24 @@ public class PlayerBasic : MonoBehaviour
 
     private float _currentSpeed;
     private bool _isJumping;
+
+    [Header("Jump settings")]
+    public Collider2D collider2D;
+    public float distToGround;
+    public float spaceToGround = .3f;
+    public ParticleSystem jumpVFX;
+
+    private void Awake()
+    {
+        if (collider2D != null)
+        {
+            distToGround = collider2D.bounds.extents.y;
+        }
+    }
+    private bool IsGrounded()
+    {
+        return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + spaceToGround);
+    }
 
     private void Update()
     {
@@ -42,8 +61,7 @@ public class PlayerBasic : MonoBehaviour
         {
             rb.velocity = new Vector2(_currentSpeed, rb.velocity.y);
             animator.SetBool("isMove", true);
-
-            if (rb.transform.localScale.x == -1)
+            if (rb.transform.localScale.x >= -1)
             {
                 rb.transform.DOScaleX(1, SOPlayer.playerSwapduration);
             }
@@ -53,8 +71,8 @@ public class PlayerBasic : MonoBehaviour
         {
             rb.velocity = new Vector2(-_currentSpeed, rb.velocity.y);
             animator.SetBool("isMove", true);
-
-            if (rb.transform.localScale.x == 1)
+            rb.transform.DOScaleX(-1, SOPlayer.playerSwapduration);
+            if (rb.transform.localScale.x <= 1)
             {
                 rb.transform.DOScaleX(-1, SOPlayer.playerSwapduration);
             }
@@ -80,9 +98,10 @@ public class PlayerBasic : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rb.velocity = Vector2.up * SOPlayer.forceJump;
+            PlayJumpVFX();
         }
 
         if (rb.velocity.y != 0)
@@ -101,6 +120,11 @@ public class PlayerBasic : MonoBehaviour
             animator.SetBool("isJump", false);
         }
     }
+    private void PlayJumpVFX()
+    {
+        if(jumpVFX != null) jumpVFX.Play();
+    }
+
     public void DestroyMe()
     {
         Destroy(gameObject);
