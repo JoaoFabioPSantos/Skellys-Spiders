@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -326,7 +325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &146932515
 RectTransform:
   m_ObjectHideFlags: 0
@@ -343,9 +342,9 @@ RectTransform:
   - {fileID: 1510156357}
   m_Father: {fileID: 1077378562}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 284.401, y: -86.82751}
   m_SizeDelta: {x: 203.7372, y: 92.6899}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &146932516
@@ -1084,8 +1083,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 330}
-  m_SizeDelta: {x: 568.802, y: 520.965}
+  m_AnchoredPosition: {x: 0, y: 253}
+  m_SizeDelta: {x: 568.802, y: 349.1196}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1077378563
 MonoBehaviour:
@@ -1223,11 +1222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3103163701922407827, guid: c54264e25def8a5458ba166b5868b141, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1518
+      value: 962
       objectReference: {fileID: 0}
     - target: {fileID: 3103163701922407827, guid: c54264e25def8a5458ba166b5868b141, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 515
+      value: 506
       objectReference: {fileID: 0}
     - target: {fileID: 3103163701922407827, guid: c54264e25def8a5458ba166b5868b141, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1710,7 +1709,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skellys & Spiders
+  m_text: Slime's Rest
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bfd24da2efa5a954088b3ed4eece57ce, type: 2}
   m_sharedMaterial: {fileID: -3750507841902642919, guid: bfd24da2efa5a954088b3ed4eece57ce, type: 2}

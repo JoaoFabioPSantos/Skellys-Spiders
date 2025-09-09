@@ -21,6 +21,7 @@ public class PlayerBasic : MonoBehaviour
     public float distToGround;
     public float spaceToGround = .3f;
     public ParticleSystem jumpVFX;
+    public AudioSource jumpAudio;
 
     private void Awake()
     {
@@ -102,6 +103,7 @@ public class PlayerBasic : MonoBehaviour
         {
             rb.velocity = Vector2.up * SOPlayer.forceJump;
             PlayJumpVFX();
+            PlayJumpAudio();
         }
 
         if (rb.velocity.y != 0)
@@ -123,6 +125,11 @@ public class PlayerBasic : MonoBehaviour
     private void PlayJumpVFX()
     {
         if(jumpVFX != null) jumpVFX.Play();
+    }
+    
+    private void PlayJumpAudio()
+    {
+        if(jumpAudio != null) jumpAudio.Play();
     }
 
     public void DestroyMe()
